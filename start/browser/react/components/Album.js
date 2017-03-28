@@ -16,7 +16,7 @@ export default class Album extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    //console.log(this.props)
     const album = this.props.album
     return (
       <div className="album">
