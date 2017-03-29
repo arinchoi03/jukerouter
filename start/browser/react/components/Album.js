@@ -28,7 +28,7 @@ export default class Album extends React.Component {
     return (
       <div className="album">
         <div>
-          <h3>{ album.name }
+          <h3>{ album.name}
               <a href={`mailto:?subject=${album.name}&body=check out this album localhost:1337/albums/${album.id}!!!!`}>
                 <span className="glyphicon glyphicon-envelope">
                 </span>
