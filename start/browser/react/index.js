@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, hashHistory, IndexRedirect } from 'react-router';
+import {Router, Route, browserHistory, IndexRedirect } from 'react-router';
+//hashHistory vs browserHistory
 
 import AppContainer from './containers/AppContainer';
 import Albums from './components/Albums'
@@ -9,8 +10,11 @@ import Artists from './components/Artists'
 import Artist from './components/Artist'
 import Songs from './components/Songs'
 
+const NotFound = () => (
+  <h1>404..This page is not found!</h1>)
+
 ReactDOM.render(
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path = "/" component= {AppContainer}>
       <Route path = "/albums" component = {Albums} />
       <Route path = "albums/:albumId" component= {Album} />
@@ -21,8 +25,10 @@ ReactDOM.render(
       </Route>
       <IndexRedirect to = "/albums" />
     </Route>
+    <Route path='*' component= {NotFound}/>
   </Router>,
   document.getElementById('app')
 );
 
-//IndexRedirect doesn't take components, rather it takes the route it redirects to
+// IndexRedirect doesn't take components, rather it takes the route it redirects to
+// Instead of making a new component for selected Album, reusing the Album component (setting props.albums = selected artist's albums)

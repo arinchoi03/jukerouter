@@ -27,17 +27,16 @@ export default class Artist extends Component {
   /**todo: make sure to include all the props that the child components need! **/
 }
 
-return (
-<div>
-  <h3>{ selectedArtist.name }</h3>
-  <ul className="nav nav-tabs">
-    <li><Link to={`/artists/${selectedArtist.id}/albums`/**todo**/}>ALBUMS</Link></li>
-    <li><Link to={`/artists/${selectedArtist.id}/songs`/**todo**/}>SONGS</Link></li>
-  </ul>
-  { children && React.cloneElement(children, propsToPassToChildren) }
-</div>
-)
-}
+    return (
+    <div>
+      <h3>{ selectedArtist.name }</h3>
+      <ul className="nav nav-tabs">
+        <li><Link to={`/artists/${selectedArtist.id}/albums`}>ALBUMS</Link></li>
+        <li><Link to={`/artists/${selectedArtist.id}/songs`}>SONGS</Link></li>
+      </ul>
+      { children && React.cloneElement(children, propsToPassToChildren) }
+    </div>)
+  }
 }
   // render() {
   //   return (<div>
