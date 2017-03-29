@@ -32,3 +32,4 @@ ReactDOM.render(
 
 // IndexRedirect doesn't take components, rather it takes the route it redirects to
 // Instead of making a new component for selected Album, reusing the Album component (setting props.albums = selected artist's albums)
+//  same as above for Songs for a particular artist, set songs to artistSongs

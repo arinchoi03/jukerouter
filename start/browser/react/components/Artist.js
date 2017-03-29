@@ -8,6 +8,7 @@ export default class Artist extends Component {
   }
 
   componentDidMount() {
+    //functions inherited from AppContainer & inheriting selectedArtist, artistAlbums, & artistSongs
     this.props.getArtist(this.props.routeParams.artistId)
     this.props.getAlbums(this.props.routeParams.artistId)
     this.props.getSongs(this.props.routeParams.artistId)
@@ -20,8 +21,8 @@ export default class Artist extends Component {
     selectedArtist: selectedArtist,
     currentSong: this.props.currentSong,
     isPlaying: this.props.isPlaying,
-    albums: this.props.artistAlbums,
-    songs: this.props.artistSongs,
+    albums: this.props.artistAlbums, // selected artist's albums rendered using Album component)
+    songs: this.props.artistSongs, // selected artist's songs rendered using Songs component)
     toggle: this.props.toggle,
     toggleOne: this.props.toggleOne
   /**todo: make sure to include all the props that the child components need! **/

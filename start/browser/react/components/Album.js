@@ -8,12 +8,18 @@ export default class Album extends React.Component {
 
   constructor(props){
     super(props)
+    this.email.bind(this);
   }
 
   componentDidMount() {
     const albumId = this.props.routeParams.albumId;
     const selectAlbum = this.props.selectAlbum;
     selectAlbum(albumId);
+  }
+
+          // <a href={`mailto:?subject=${album.name}&body=check out this album localhost:1337/albums/${album.id}!!!!`}>hello</a>
+  email() {
+    {this.href = `mailto:?subject=${album.name}&body=check out this album localhost:1337/albums/${album.id}!!!!`}
   }
 
   render() {
@@ -23,12 +29,10 @@ export default class Album extends React.Component {
       <div className="album">
         <div>
           <h3>{ album.name }
-            <button className="btn btn-default btn-xs">
-              <span className="glyphicon glyphicon-envelope">
-                <a href={`mailto:?subject=${album.name}&body=check out this album localhost:1337/albums/${album.id}!!!!`}>
-                </a>
-              </span>
-            </button>
+              <a href={`mailto:?subject=${album.name}&body=check out this album localhost:1337/albums/${album.id}!!!!`}>
+                <span className="glyphicon glyphicon-envelope">
+                </span>
+              </a>
           </h3>
           <img src={ album.imageUrl } className="img-thumbnail" />
         </div>
@@ -41,6 +45,10 @@ export default class Album extends React.Component {
     );
   }
 }
+
+            // <button className="btn btn-default btn-xs" >
+            // </button>
+
 
               // <Mailto email={null} headers={{subject: album.name, body: `check out this awesome album localhost:1337/albums/${album.id}`}}>
               // </Mailto>
