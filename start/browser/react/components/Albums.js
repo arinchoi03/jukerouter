@@ -31,4 +31,6 @@ const Albums = (props) => {
   );
 }
 
+// Link to {`albums/${album.id}`} goes to index which has the route to {Album}
+
 export default Albums;
