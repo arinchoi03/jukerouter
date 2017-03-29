@@ -13,60 +13,85 @@ export default class Artist extends Component {
     this.props.getSongs(this.props.routeParams.artistId)
   }
 
-
-  render() {
-    return (<div>
-              <h3>{this.props.selectedArtist.name}</h3>
-              <h4>ALBUMS</h4>
-              <div>
-                <div className="row">
-                {
-                  this.props.artistAlbums.map(album => (
-                    <div className="col-xs-4" key={ album.id }>
-                      <Link to={`/albums/${album.id}`} className="thumbnail">
-                        <img src={ album.imageUrl } />
-                        <div className="caption">
-                          <h5>
-                            <span>{ album.name }</span>
-                          </h5>
-                          <small>{ album.songs.length } songs</small>
-                        </div>
-                        </Link>
-                    </div>
-                  ))
-                }
-                </div>
-              </div>
-              <h4>SONGS</h4>
-                <table className='table'>
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Name</th>
-                      <th>Artists</th>
-                      <th>Genre</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      this.props.artistSongs && this.props.artistSongs.map(song => (
-                        <tr key={song.id}>
-                          <td>
-                            <button className="btn btn-default btn-xs" onClick={() => toggle(song, this.props.artistSongs)}>
-                              <span className={song.id === this.props.currentSong.id && this.props.isPlaying ? "glyphicon glyphicon-pause" : "glyphicon glyphicon-play"}></span>
-                            </button>
-                          </td>
-                          <td>{ song.name }</td>
-                          <td>
-                            <span>{ song.artists ? song.artists.map(artist => artist.name).join(', ') : null }</span>
-                          </td>
-                          <td>{ song.genre }</td>
-                        </tr>
-                      ))
-                    }
-                  </tbody>
-                </table>
-            </div>)
-
-  }
+  render(){
+  const selectedArtist = this.props.selectedArtist;
+  const children = this.props.children;
+  const propsToPassToChildren = {
+    selectedArtist: selectedArtist,
+    currentSong: this.props.currentSong,
+    isPlaying: this.props.isPlaying,
+    albums: this.props.artistAlbums,
+    songs: this.props.artistSongs,
+    toggle: this.props.toggle,
+    toggleOne: this.props.toggleOne
+  /**todo: make sure to include all the props that the child components need! **/
 }
+
+return (
+<div>
+  <h3>{ selectedArtist.name }</h3>
+  <ul className="nav nav-tabs">
+    <li><Link to={`/artists/${selectedArtist.id}/albums`/**todo**/}>ALBUMS</Link></li>
+    <li><Link to={`/artists/${selectedArtist.id}/songs`/**todo**/}>SONGS</Link></li>
+  </ul>
+  { children && React.cloneElement(children, propsToPassToChildren) }
+</div>
+)
+}
+}
+  // render() {
+  //   return (<div>
+  //             <h3>{this.props.selectedArtist.name}</h3>
+  //             <h4>ALBUMS</h4>
+  //             <div>
+  //               <div className="row">
+  //               {
+  //                 this.props.artistAlbums.map(album => (
+  //                   <div className="col-xs-4" key={ album.id }>
+  //                     <Link to={`/albums/${album.id}`} className="thumbnail">
+  //                       <img src={ album.imageUrl } />
+  //                       <div className="caption">
+  //                         <h5>
+  //                           <span>{ album.name }</span>
+  //                         </h5>
+  //                         <small>{ album.songs.length } songs</small>
+  //                       </div>
+  //                       </Link>
+  //                   </div>
+  //                 ))
+  //               }
+  //               </div>
+  //             </div>
+  //             <h4>SONGS</h4>
+  //               <table className='table'>
+  //                 <thead>
+  //                   <tr>
+  //                     <th></th>
+  //                     <th>Name</th>
+  //                     <th>Artists</th>
+  //                     <th>Genre</th>
+  //                   </tr>
+  //                 </thead>
+  //                 <tbody>
+  //                   {
+  //                     this.props.artistSongs && this.props.artistSongs.map(song => (
+  //                       <tr key={song.id}>
+  //                         <td>
+  //                           <button className="btn btn-default btn-xs" onClick={() => toggle(song, this.props.artistSongs)}>
+  //                             <span className={song.id === this.props.currentSong.id && this.props.isPlaying ? "glyphicon glyphicon-pause" : "glyphicon glyphicon-play"}></span>
+  //                           </button>
+  //                         </td>
+  //                         <td>{ song.name }</td>
+  //                         <td>
+  //                           <span>{ song.artists ? song.artists.map(artist => artist.name).join(', ') : null }</span>
+  //                         </td>
+  //                         <td>{ song.genre }</td>
+  //                       </tr>
+  //                     ))
+  //                   }
+  //                 </tbody>
+  //               </table>
+  //           </div>)
+
+  // }
+
